@@ -3,26 +3,26 @@ package com.pluralsight.candycoded.database
 import android.provider.BaseColumns
 
 object CandyContract {
-    val DB_NAME = "candycoded.db"
-    val DB_VERSION = 1
+    const val DB_NAME = "candycoded.db"
+    const val DB_VERSION = 1
 
-    val SQL_CREATE_ENTRIES = "CREATE TABLE " + CandyEntry.TABLE_NAME + " (" +
-            CandyEntry.ID + " INTEGER PRIMARY KEY," + // MAYBE DELETE
+    const val SQL_CREATE_ENTRIES = "CREATE TABLE " + CandyEntry.TABLE_NAME + " (" +
+            CandyEntry.COLUMN_NAME_ID + " INTEGER PRIMARY KEY," +
             CandyEntry.COLUMN_NAME_NAME + " TEXT," +
             CandyEntry.COLUMN_NAME_PRICE + " TEXT," +
             CandyEntry.COLUMN_NAME_DESC + " TEXT," +
             CandyEntry.COLUMN_NAME_IMAGE + " TEXT)"
 
-    val SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS " + CandyEntry.TABLE_NAME
+    const val SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS " + CandyEntry.TABLE_NAME
 
     class CandyEntry : BaseColumns {
         companion object {
-            val TABLE_NAME = "candy"
-            val ID = "ID" // MAYBE DELETE
-            val COLUMN_NAME_NAME = "name"
-            val COLUMN_NAME_PRICE = "price"
-            val COLUMN_NAME_DESC = "description"
-            val COLUMN_NAME_IMAGE = "image"
+            const val TABLE_NAME = "candy"
+            const val COLUMN_NAME_ID = "_id"
+            const val COLUMN_NAME_NAME = "name"
+            const val COLUMN_NAME_PRICE = "price"
+            const val COLUMN_NAME_DESC = "description"
+            const val COLUMN_NAME_IMAGE = "image"
         }
     }
 }

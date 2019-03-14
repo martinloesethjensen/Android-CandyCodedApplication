@@ -80,7 +80,7 @@ class MainActivity : AppCompatActivity() {
             values.put(CandyEntry.COLUMN_NAME_DESC, description)
             values.put(CandyEntry.COLUMN_NAME_IMAGE, image)
 
-            db.insert(CandyEntry.TABLE_NAME, null, values)
+            db.insert(CandyContract.CandyEntry.TABLE_NAME, null, values)
         }
     }
 }
