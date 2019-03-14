@@ -29,10 +29,8 @@ class InfoActivity : AppCompatActivity() {
     }
 
     fun createPhoneIntent(view: View) {
-        startActivity(Intent(Intent.ACTION_DIAL).setData(Uri.parse("tel:0123456789")))
+        val phoneIntent = Intent(Intent.ACTION_DIAL)
+        phoneIntent.data = Uri.parse("tel:0123456789")
+        startActivity(phoneIntent)
     }
-
-    // ***
-    // TODO - Task 3 - Launch the Phone Activity
-    // ***
 }

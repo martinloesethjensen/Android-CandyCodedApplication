@@ -66,9 +66,13 @@ class MainActivity : AppCompatActivity() {
         inflater.inflate(R.menu.main, menu)
         return true
     }
-    // ***
-    // TODO - Task 1 - Show Store Information Activity
-    // ***
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        val infoIntent = Intent(this, InfoActivity::class.java)
+        startActivity(infoIntent)
+
+        return super.onOptionsItemSelected(item)
+    }
 
     private fun addCandiesToDatabase(candies: Array<Candy>) {
         val db = candyDbHelper.writableDatabase
