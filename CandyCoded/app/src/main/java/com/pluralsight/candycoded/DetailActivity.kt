@@ -1,8 +1,10 @@
 package com.pluralsight.candycoded
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -61,12 +63,22 @@ class DetailActivity : AppCompatActivity() {
     }
 
     companion object {
-
-        val SHARE_DESCRIPTION = "Look at this delicious candy from Candy Coded - "
-        val HASHTAG_CANDYCODED = " #candycoded"
+        const val SHARE_DESCRIPTION = "Look at this delicious candy from Candy Coded - "
+        const val HASHTAG_CANDYCODED = " #candycoded"
     }
 
-    // ***
-    // TODO - Task 4 - Share the Current Candy with an Intent
-    // ***
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        createShareIntent()
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun createShareIntent() {
+        val shareIntent = Intent(Intent.ACTION_SEND)
+        shareIntent.type = "text/plain"
+
+        val shareString = SHARE_DESCRIPTION + mCandyImageUrl + HASHTAG_CANDYCODED
+        shareIntent.putExtra(Intent.EXTRA_TEXT, shareString)
+
+        startActivity(shareIntent)
+    }
 }
