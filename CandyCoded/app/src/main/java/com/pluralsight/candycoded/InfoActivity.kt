@@ -28,9 +28,9 @@ class InfoActivity : AppCompatActivity() {
 
     }
 
-    // ***
-    // TODO - Task 2 - Launch the Google Maps Activity
-    // ***
+    fun createPhoneIntent(view: View) {
+        startActivity(Intent(Intent.ACTION_DIAL).setData(Uri.parse("tel:0123456789")))
+    }
 
     // ***
     // TODO - Task 3 - Launch the Phone Activity
