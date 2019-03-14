@@ -7,28 +7,23 @@ import android.net.Uri
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
-
 import junit.framework.Assert
-
+import org.junit.Assert.assertNotNull
+import org.junit.Assert.assertTrue
 import org.junit.BeforeClass
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mockito
+import org.mockito.Mockito.mock
+import org.mockito.Mockito.verify
 import org.powermock.api.mockito.PowerMockito
 import org.powermock.core.classloader.annotations.PrepareForTest
 import org.powermock.modules.junit4.PowerMockRunner
-import org.xmlpull.v1.XmlPullParser
 import org.xmlpull.v1.XmlPullParserFactory
-
 import java.io.IOException
 import java.io.InputStream
 import java.lang.reflect.Method
-import java.util.ArrayList
-
-import org.junit.Assert.assertNotNull
-import org.junit.Assert.assertTrue
-import org.mockito.Mockito.mock
-import org.mockito.Mockito.verify
+import java.util.*
 
 
 //@FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -173,7 +168,7 @@ class _2_StartTheGoogleMapsActivity {
                     //infoActivity.createMapIntent(null);
                     val myMethod = InfoActivity::class.java
                             .getMethod("createMapIntent", View::class.java)
-                    val param = arrayOf<Any>(null)
+                    val param = arrayOf<Any>(Any())
                     myMethod.invoke(infoActivity, *param)
                 } catch (e: Throwable) {
                     //e.printStackTrace();

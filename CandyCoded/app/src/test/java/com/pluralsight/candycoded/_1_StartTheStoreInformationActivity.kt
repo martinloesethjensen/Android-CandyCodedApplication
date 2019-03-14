@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
-
+import org.junit.Assert.*
 import org.junit.BeforeClass
 import org.junit.FixMethodOrder
 import org.junit.Test
@@ -14,10 +14,6 @@ import org.mockito.Mockito
 import org.powermock.api.mockito.PowerMockito
 import org.powermock.core.classloader.annotations.PrepareForTest
 import org.powermock.modules.junit4.PowerMockRunner
-
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertFalse
-import org.junit.Assert.assertTrue
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @PrepareForTest(AppCompatActivity::class, MainActivity::class, Intent::class, InfoActivity::class)
@@ -116,7 +112,7 @@ class _1_StartTheStoreInformationActivity {
                 }
 
                 try {
-                    PowerMockito.verifyNew<Any>(Intent::class.java, Mockito.atLeastOnce()).withArguments(Mockito.any(MainActivity::class.java), Mockito.any(Class<*>::class.java))
+                    PowerMockito.verifyNew<Any>(Intent::class.java, Mockito.atLeastOnce()).withArguments(Mockito.any(MainActivity::class.java), Mockito.any(Class::class.java))
                     called_Intent = true
                 } catch (e: Throwable) {
                     //e.printStackTrace();

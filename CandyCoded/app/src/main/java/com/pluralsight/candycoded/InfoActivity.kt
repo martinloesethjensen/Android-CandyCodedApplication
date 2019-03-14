@@ -1,5 +1,6 @@
 package com.pluralsight.candycoded
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -17,7 +18,13 @@ class InfoActivity : AppCompatActivity() {
         val uri = Uri.parse("android.resource://com.codeschool.candycoded/" + R.drawable.store_front)
         val candyStoreImageView = findViewById<View>(R.id.image_view_candy_store) as ImageView
         Picasso.with(this).load(uri).into(candyStoreImageView)
+    }
 
+    fun createMapIntent(view: View) {
+        val uri = Uri.parse("geo:0,0?q=618 E South St Orlando, FL 32801")
+        val mapIntent = Intent(Intent.ACTION_VIEW, uri)
+        mapIntent.setPackage("com.google.android.apps.maps")
+        if (mapIntent.resolveActivity(packageManager) != null) startActivity(mapIntent)
 
     }
 
