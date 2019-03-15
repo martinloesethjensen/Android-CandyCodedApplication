@@ -1,7 +1,9 @@
 package com.pluralsight.candycoded
 
-data class Candy(val id: Int, val name: String, val image: String, val description: String, var price: Double) {
-
-    companion object {
-    }
+class Candy {
+    var id: Int = 0
+    var name: String? = null
+    var image: String? = null
+    var price: String? = null
+    var description: String? = null
 }

@@ -6,23 +6,24 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ListView
-
-import com.pluralsight.candycoded.database.CandyContract.CandyEntry
-import com.pluralsight.candycoded.database.CandyCursorAdapter
-import com.pluralsight.candycoded.database.CandyDbHelper
 import com.google.gson.GsonBuilder
 import com.loopj.android.http.AsyncHttpClient
 import com.loopj.android.http.TextHttpResponseHandler
+import com.pluralsight.candycoded.database.CandyContract
+import com.pluralsight.candycoded.database.CandyCursorAdapter
+import com.pluralsight.candycoded.database.CandyDbHelper
 import cz.msebera.android.httpclient.Header
+
 
 class MainActivity : AppCompatActivity() {
     private var candies: Array<Candy>? = null
     private val candyDbHelper = CandyDbHelper(this)
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
@@ -50,13 +51,13 @@ class MainActivity : AppCompatActivity() {
                     override fun onSuccess(statusCode: Int, headers: Array<Header>, response: String) {
                         Log.d("AsyncHttpClient", "response = $response")
                         val gson = GsonBuilder().create()
-                        candies = gson.fromJson(response, Array<Candy>::class.java)
+                        candies = gson.fromJson<Array<Candy>>(response, Array<Candy>::class.java)
 
                         addCandiesToDatabase(candies!!)
 
-                        val db = candyDbHelper.writableDatabase
-                        val cursor = db.rawQuery("SELECT * FROM candy", null)
-                        //adapter.changeCursor(cursor);
+                        val database = candyDbHelper.writableDatabase
+                        val cursorCandyDbHelper = database.rawQuery("SELECT * FROM candy", null)
+//                        adapter.changeCursor(cursorCandyDbHelper);
                     }
                 })
     }
@@ -77,12 +78,12 @@ class MainActivity : AppCompatActivity() {
     private fun addCandiesToDatabase(candies: Array<Candy>) {
         val db = candyDbHelper.writableDatabase
 
-        for ((id, _, image, description, price) in candies) {
+        for (candy in candies) {
             val values = ContentValues()
-            values.put(CandyEntry.COLUMN_NAME_NAME, id)
-            values.put(CandyEntry.COLUMN_NAME_PRICE, price)
-            values.put(CandyEntry.COLUMN_NAME_DESC, description)
-            values.put(CandyEntry.COLUMN_NAME_IMAGE, image)
+            values.put(CandyContract.CandyEntry.COLUMN_NAME_NAME, candy.name)
+            values.put(CandyContract.CandyEntry.COLUMN_NAME_PRICE, candy.price)
+            values.put(CandyContract.CandyEntry.COLUMN_NAME_DESC, candy.description)
+            values.put(CandyContract.CandyEntry.COLUMN_NAME_IMAGE, candy.image)
 
             db.insert(CandyContract.CandyEntry.TABLE_NAME, null, values)
         }
