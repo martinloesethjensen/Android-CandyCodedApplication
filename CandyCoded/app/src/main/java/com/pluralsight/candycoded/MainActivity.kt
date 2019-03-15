@@ -56,8 +56,7 @@ class MainActivity : AppCompatActivity() {
                         addCandiesToDatabase(candies!!)
 
                         val database = candyDbHelper.writableDatabase
-                        val cursorCandyDbHelper = database.rawQuery("SELECT * FROM candy", null)
-//                        adapter.changeCursor(cursorCandyDbHelper);
+                        database.rawQuery("SELECT * FROM candy", null)
                     }
                 })
     }
